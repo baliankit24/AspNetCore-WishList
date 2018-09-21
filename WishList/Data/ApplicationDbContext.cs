@@ -1,12 +1,16 @@
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
+using WishList.Model;
 
-public class ApplicationDbContext : DbContext
+namespace WishList.Data
 {
-    public DbSet<Item> Items { get; set; }
-
-    public ApplicationDbContext(DbContextOptions options) : base(options)
+    public class ApplicationDbContext : DbContext
     {
+        public DbSet<Item> Items { get; set; }
 
+        public ApplicationDbContext(DbContextOptions options) : base(options)
+        {
+
+        }
     }
 }

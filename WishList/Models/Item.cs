@@ -1,10 +1,13 @@
 using System.ComponentModel.DataAnnotations;
 
-public class Item 
+namespace WishList.Model
 {
-    public int Id { get; set; }
+    public class Item
+    {
+        public int Id { get; set; }
 
-    [Required]
-    [MaxLength(50)]
-    public string Description { get; set; }
+        [Required]
+        [MaxLength(50)]
+        public string Description { get; set; }
+    }
 }
