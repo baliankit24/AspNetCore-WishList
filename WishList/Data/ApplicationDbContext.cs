@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
-using WishList.Model;
+using WishList.Models;
 
 namespace WishList.Data
 {
