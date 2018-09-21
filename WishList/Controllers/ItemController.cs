@@ -1,41 +1,44 @@
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using WishList.Data;
-
-public class ItemController : Controller
+namespace WishList.Controller
 {
-    private readonly ApplicationDbContext _context;
+    using System.Linq;
+    using Microsoft.AspNetCore.Mvc;
+    using WishList.Data;
 
-    public ItemController(ApplicationDbContext context)
+    public class ItemController : Controller
     {
-        _context = context;
-    }
+        private readonly ApplicationDbContext _context;
 
-    public IActionResult Index()
-    {
-        var model = _context.Items.ToList();
-        return View("Index",model);
-    }
+        public ItemController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
 
-    [HttpGet]
-    public IActionResult Create()
-    {
-        return View("Create");
-    }
+        public IActionResult Index()
+        {
+            var model = _context.Items.ToList();
+            return View("Index", model);
+        }
 
-    [HttpPost]
-    public IActionResult Create(WishList.Model.Item item)
-    {
-        _context.Items.Add(item);
-        _context.SaveChanges();
-        return RedirectToAction("Index");
-    }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View("Create");
+        }
 
-    public IActionResult Delete(int id)
-    {
-        var item = _context.Items.Where(x=> x.Id == id).FirstOrDefault();
-        _context.Items.Remove(item);
-        _context.SaveChanges();
-        return RedirectToAction("Index");
+        [HttpPost]
+        public IActionResult Create(WishList.Model.Item item)
+        {
+            _context.Items.Add(item);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var item = _context.Items.Where(x => x.Id == id).FirstOrDefault();
+            _context.Items.Remove(item);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
